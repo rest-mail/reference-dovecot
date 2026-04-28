@@ -1,0 +1,29 @@
+# Generic Dovecot SQL configuration.
+# Rendered at startup via envsubst. Replace with your own queries by mounting
+# /etc/dovecot-overlay/dovecot-sql.conf.ext.
+#
+# Expected schema (override if yours differs):
+#   mailboxes(address, password, local_part, domain_id, quota_bytes, active)
+#   domains(id, name, active)
+
+driver = pgsql
+connect = host=${DOVECOT_DB_HOST} port=${DOVECOT_DB_PORT} dbname=${DOVECOT_DB_NAME} user=${DOVECOT_DB_USER} password=${DOVECOT_DB_PASSWORD}
+
+password_query = \
+  SELECT address AS user, password, \
+    5000 AS userdb_uid, 5000 AS userdb_gid, \
+    CONCAT('/var/mail/vhosts/', d.name, '/', m.local_part) AS userdb_home \
+  FROM mailboxes m \
+  JOIN domains d ON m.domain_id = d.id \
+  WHERE m.address = '%u' AND m.active = true AND d.active = true
+
+user_query = \
+  SELECT CONCAT('/var/mail/vhosts/', d.name, '/', m.local_part) AS home, \
+    5000 AS uid, 5000 AS gid, \
+    CONCAT('*:bytes=', m.quota_bytes) AS quota_rule \
+  FROM mailboxes m \
+  JOIN domains d ON m.domain_id = d.id \
+  WHERE m.address = '%u' AND m.active = true AND d.active = true
+
+iterate_query = \
+  SELECT address AS user FROM mailboxes WHERE active = true
