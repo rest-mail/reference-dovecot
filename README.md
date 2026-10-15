@@ -133,6 +133,6 @@ MIT.
 
 ## See also
 
-- [`rest-mail/conventions`](https://github.com/rest-mail/conventions) — the contract every `reference-*` image follows (overlay paths, env var naming, signal handling, calver tagging).
+- [`rest-mail/conventions`](https://github.com/rest-mail/conventions) — the contract every `reference-*` image follows (overlay paths, env var naming, signal handling, SemVer tagging).
 - [`rest-mail/reference-postfix`](https://github.com/rest-mail/reference-postfix) — pairs naturally with this image as the MTA half of a small mail stack.
 - [`rest-mail/testbed`](https://github.com/rest-mail/testbed) — composes this image alongside `reference-postfix`, `reference-rspamd`, `reference-dnsmasq`, and `reference-certgen` into a full local-internet mail sandbox.
