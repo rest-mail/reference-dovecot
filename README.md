@@ -7,8 +7,8 @@ Useful as a standalone IMAP/POP3/LMTP server for development or as the mailstore
 ## Image
 
 ```
-ghcr.io/rest-mail/reference-dovecot:latest          # always newest
-ghcr.io/rest-mail/reference-dovecot:YYYY.MM.DD      # immutable calver tag
+ghcr.io/rest-mail/reference-dovecot:latest          # newest master build; pin a release instead
+ghcr.io/rest-mail/reference-dovecot:X.Y.Z          # a release: git tag vX.Y.Z publishes it
 ```
 
 ## Quick start (standalone)
