@@ -7,7 +7,7 @@ Useful as a standalone IMAP/POP3/LMTP server for development or as the mailstore
 ## Image
 
 ```
-ghcr.io/rest-mail/reference-dovecot:latest          # newest master build; pin a release instead
+ghcr.io/rest-mail/reference-dovecot:latest          # newest main build; pin a release instead
 ghcr.io/rest-mail/reference-dovecot:X.Y.Z          # a release: git tag vX.Y.Z publishes it
 ```
 
@@ -115,7 +115,7 @@ A successful response means the IMAP login service is up and answering. Configur
 │   ├── dovecot.conf            # baked-in defaults; overlay overrides
 │   └── dovecot-sql.conf.ext    # SQL passdb/userdb template
 ├── .github/workflows/
-│   └── build.yml               # multi-arch GHCR publish on push to master
+│   └── build.yml               # multi-arch GHCR publish on push to main
 └── tests/
     └── smoke.sh                # spin up + IMAP CAPABILITY + verify
 ```
